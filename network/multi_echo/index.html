@@ -9,7 +9,7 @@
   <meta name="author" content="University of Waterloo Aerial Robotics Group">
   <link rel="shortcut icon" href="../../favicon.ico">
   
-  <title>3D Printing Guidelines - WARG Docs</title>
+  <title>Multi Echo - WARG Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "3D Printing Guidelines";
-    var mkdocs_page_input_path = "mechanical/3d-printing-guidelines.md";
-    var mkdocs_page_url = "/mechanical/3d-printing-guidelines/";
+    var mkdocs_page_name = "Multi Echo";
+    var mkdocs_page_input_path = "network/multi_echo.md";
+    var mkdocs_page_url = "/network/multi_echo/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -177,11 +177,25 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../network/data_relay/">Data Relay</a>
+    <a class="" href="../data_relay/">Data Relay</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../network/multi_echo/">Multi Echo</a>
+    <a class="current" href="./">Multi Echo</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#multi-echo-server">Multi Echo Server</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#purpose">Purpose</a></li>
+        
+            <li><a class="toctree-l4" href="#network">Network</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -231,25 +245,19 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../">Table of Contents</a>
+    <a class="" href="../../mechanical/">Table of Contents</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../cad-guidelines/">CAD Guidelines</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">3D Printing Guidelines</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#guide-to-3d-printing">Guide to 3D Printing</a></li>
-    
-
-    </ul>
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../grabcad/">GrabCad</a>
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
                 </li>
     </ul>
 	    </li>
@@ -343,14 +351,14 @@
     
       
         
-          <li>Mechanical &raquo;</li>
+          <li>Network &raquo;</li>
         
       
     
-    <li>3D Printing Guidelines</li>
+    <li>Multi Echo</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/mechanical/3d-printing-guidelines.md"
+        <a href="https://github.com/UWARG/edit/master/docs/network/multi_echo.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -360,18 +368,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="guide-to-3d-printing">Guide to 3D Printing</h1>
-<p>General guidelines and requirements for 3D printing:</p>
-<ol>
-<li>Get your <a href="https://uwaterloo.ca/mechanical-mechatronics-engineering/resources-and-services/mme-clinic/watimake">WATIMAKE 3D print certification</a>.</li>
-<li>Keep in mind the orientation of the 3D print to maximize strength of the part, minimize support materials, and maximize feature accuracy.</li>
-<li>Consider the maximum build volume of the printer</li>
-<li>Keep in mind warping – the back part of the printer nearer to the extruder is warmer. Maintaining constant temperature will prevent warping due to rapid cooling. Therefore, if certain features are important put them closer to the extruder than the door to maintain a constant environment.</li>
-<li>Consider splitting large parts into multiple parts and using flanges/mating features to appropriately to attach together.</li>
-<li>Consider the material your using. ABS is more prone to warping and is no brittle. PLA warps less and is brittle.</li>
-<li>Filament is not cheap – consider the amount if infill, you should not be using more than 30% for a structural part.</li>
-<li>Consider the amount of shells (number of outer layers before infill begins) that you need 4-6 layers is appropriate.</li>
-</ol>
+                <h1 id="multi-echo-server">Multi Echo Server</h1>
+<h2 id="purpose">Purpose</h2>
+<p>The Multi echo server is a python script that can run on any computer and is meant to be run on the raspberry pi along with the data relay. The server recieves information from a TCP connection and echos it out to all devices connected to the server via TCP connection. This allows communication between ground applications to talk to eachother.</p>
+<p>Currently this script is not in use in our current setup. However, this script will likely be used for computer vision and tracking antenna communication between them and the ground station. Having this communication between ground applications enables the ground station operator to have more data about all the running scripts. For example, the multi-echo server could allow the ground station operator to send commands to the tracking antenna to initialize it, or to get data about the antenna's orientation and status. It can also be used to transmit computer vision data such as potential mission targets to the ground stations.</p>
+<h2 id="network">Network</h2>
+<p>The network for the multi echo is setup the same as the data relay. The UDP broadcast is not yet implemented, so it always runs in legacy mode. The standard connection information is listed below:</p>
+<p><code>IP address: 192.168.1.103 (same as data relay)</code></p>
+<p><code>Port: 4321</code></p>
               
             </div>
           </div>
@@ -379,10 +383,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../grabcad/" class="btn btn-neutral float-right" title="GrabCad">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../computer-vision/" class="btn btn-neutral float-right" title="Table of Contents">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../cad-guidelines/" class="btn btn-neutral" title="CAD Guidelines"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../data_relay/" class="btn btn-neutral" title="Data Relay"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -412,10 +416,10 @@
           <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../cad-guidelines/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../data_relay/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../grabcad/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../computer-vision/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
